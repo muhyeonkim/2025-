@@ -28,13 +28,12 @@ void travel2(int x) { // 중위
 void travel3(int x) { // 후위
 	if (tree[x][0] != '.') {
 		travel3(tree[x][0] - 'A');
-		cout << tree[x][0];
 	}
 
 	if (tree[x][1] != '.') {
 		travel3(tree[x][1] - 'A');
-		cout << tree[x][1];
 	}
+	cout << char(x + 'A');
 }
 int main() {
 	int  n;
@@ -62,5 +61,5 @@ int main() {
 	travel2(0);
 	cout << "\n";
 	travel3(0);
-	cout << 'A' << "\n";
+
 }
