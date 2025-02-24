@@ -7,7 +7,6 @@ DFS로 탐색
 using namespace std;
 
 char map[21][21];
-bool visited[21][21];
 int dx[4] = { 1,-1,0,0 };
 int dy[4] = { 0,0,1,-1 };
 
@@ -20,7 +19,6 @@ bool isOutofLine(int y, int x) {
 }
 
 void DFS(int y,int x,int cnt) {
-	visited[y][x] = true;
 	alpha[map[y][x] - 'A'] = true;
 	if (max_dist < cnt) {
 		max_dist = cnt;
@@ -28,9 +26,8 @@ void DFS(int y,int x,int cnt) {
 	for (int i = 0; i < 4; i++) {
 		int ny = y + dy[i];
 		int nx = x + dx[i];
-		if (isOutofLine(ny, nx) && visited[ny][nx] == false && alpha[map[ny][nx] - 'A'] == false) {
+		if (isOutofLine(ny, nx) && alpha[map[ny][nx] - 'A'] == false) {
 			DFS(ny, nx, cnt + 1);
-			visited[ny][nx] = false;
 			alpha[map[ny][nx] - 'A'] = false;
 		}
 	}
