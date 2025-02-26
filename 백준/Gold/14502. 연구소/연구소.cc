@@ -70,8 +70,8 @@ void pick(int y, int x, int cnt) {
 		count();
 		return;
 	}
-	for (int i = y; i < n; i++) {
-		for (int j = 0; j < m; j++) {
+	for (int i = y; i < n; i++,x=0) {
+		for (int j = x; j < m; j++) {
 			if (map[i][j] == 0) {
 				map[i][j] = 1;
 				pick(i, j, cnt + 1);
