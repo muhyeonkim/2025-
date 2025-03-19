@@ -5,18 +5,16 @@
 using namespace std;
 
 int main() {
-	int t;
+	int n;
 	vector<int>v;
-	cin >> t;
-	for (int i = 0; i < t; i++) {
-		int n;
-		cin >> n;
-		v.push_back(n);
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		int x;
+		cin >> x;
+		v.push_back(x);
 	}
-
 	sort(v.begin(), v.end());
-
-	for (int i = 0; i < t; i++) {
-		cout << v[i] << "\n";
+	for (auto a : v) {
+		cout << a << "\n";
 	}
 }
