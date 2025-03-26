@@ -1,33 +1,34 @@
 #include <iostream>
-#include <vector>
 #include <cmath>
+#include <vector>
 #include <algorithm>
 /*
-n개의 의견을 받는다.
-그중 상위 15%,하위 15%의 의견은 받지 않는다.
-사람 수가 소숫점인 경우는 반올림을 한다.
-평균을 계산한다.
-평균 값을 반올림 한다.
+난이도 계산하기
+아무 의견이 없으면 난이도는 0
+하나 이상의 의견이 있다면 모든 사람의 난이도 의견의 상위 15%, 하위 15%는 제외
+제외되는 사람의 수는 반올림
+계산된 평균도 반올림
 
+정렬
+15%가 얼마인지 계산
+평균 계산
 */
+
 using namespace std;
 
 int main() {
-	int n;
-	double del = 0, sum = 0, total = 0;
+	int n, sum = 0, ex = 0;
 	vector<int>v;
 	cin >> n;
 	for (int i = 0; i < n; i++) {
-		int a;
-		cin >> a;
-		v.push_back(a);
+		int x;
+		cin >> x;
+		v.push_back(x);
 	}
 	sort(v.begin(), v.end());
-	del = round(n * 0.15);
-	for (int i = del; i < n - del; i++) {
+	for (int i = round(0.15 * n); i < n - round(0.15 * n); i++) {
 		sum += v[i];
 	}
-	total = n - (2 * del);
 	if (n == 0) cout << 0;
-	else cout << round(sum / total);
+	else cout << round(sum / (n - (round(0.15 * n) + round(0.15 * n))));
 }
