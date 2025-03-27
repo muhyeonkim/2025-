@@ -1,44 +1,41 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+
+/*
+최대 랜선 길이?
+*/
 
 using namespace std;
-/*
-k개의 랜선으로 n개의 랜선을 만든다
-단, n개의 랜선은 모두 길이가 같고 최대한 길게 만들어야 한다.
-left<=right
-*/
-int k, n;
-vector<long long>v;
-
-long long parm(long long left, long long right) {
-	long long result = 0;
-	while (left <= right) {
-		int cnt = 0;
-
-		long long mid = (left + right) / 2;
-		for (int i = 0; i < k; i++) {
-			cnt += v[i] / mid;
-		}
-		if (cnt >= n) {
-			result = mid;
-			left = mid + 1;
-		}
-		else {
-			right = mid - 1;
-		}
-	}
-	return result;
-}
 
 int main() {
-	long long maxlen = 0;
+	cin.tie(0);
+	ios::sync_with_stdio(false);
+	cout.tie(0);
+
+	int k, n;
+	vector<long long int>v;
 	cin >> k >> n;
 	for (int i = 0; i < k; i++) {
-		long long a;
-		cin >> a;
-		v.push_back(a);
-		maxlen = max(a, maxlen);
+		long long int x;
+		cin >> x;
+		v.push_back(x);
 	}
-
-	cout << parm(1, maxlen);
+	sort(v.begin(), v.end());
+	long long int low = 1, mid = 0, high = v[k - 1], res = 0;
+	while (low <= high) {
+		int sum = 0; // 만들 수 있는 랜선의 개수
+		mid = (low + high) / 2;
+		for (int i = 0; i < k; i++) {
+			sum += v[i] / mid; 
+		}
+		if (sum >= n) { //덜 만들어야 하는 경우는 길이를 더 길게
+			res = mid;
+			low = mid + 1;
+		}
+		else { // 더 만들어야 하는 경우는 길이를 더 짧게
+			high = mid - 1;
+		}
+	}
+	cout << res;
 }
