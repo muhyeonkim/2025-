@@ -1,40 +1,36 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
-/*
-매개변수
-*/
+#include <algorithm>
 
 using namespace std;
 
 int main() {
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	vector<long long int>v;
-	long long n, m, max_h = 0;
+	cout.tie(0);
+	int n, m;
+	vector<int>v;
 	cin >> n >> m;
 	for (int i = 0; i < n; i++) {
-		long long int h;
-		cin >> h;
-		v.push_back(h);
+		int x;
+		cin >> x;
+		v.push_back(x);
 	}
 	sort(v.begin(), v.end());
-	long long left = 0, right = v[n - 1], sum = 0, mid = 0;
-	while (left <= right) {
-		sum = 0;
-		mid = (left + right) / 2;
+	int low = 0, mid = 0, high = v[n - 1], res = 0;
+	while (low <= high) {
+		long long int sum = 0;
+		mid = (low + high) / 2;
 		for (int i = 0; i < n; i++) {
-			if (mid < v[i]) {
+			if (v[i] > mid) {
 				sum += v[i] - mid;
 			}
 		}
-		if (m <= sum) {
-			max_h = mid;
-			left = mid + 1;
+		if (sum >= m) {
+			res = mid;
+			low = mid + 1;
 		}
-		else {
-			right = mid - 1;
-		}
+		else  high = mid - 1;
 	}
-	cout << max_h;
+	cout << res;
 }
