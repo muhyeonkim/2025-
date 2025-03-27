@@ -4,10 +4,12 @@
 using namespace std;
 
 int main() {
-	ios::sync_with_stdio(false);
 	cin.tie(0);
+	cout.tie(0);
+	ios::sync_with_stdio(false);
 	int m;
-	set<int>s1;
+	set<int>st;
+
 	cin >> m;
 	while (m--) {
 		string s;
@@ -15,33 +17,38 @@ int main() {
 		if (s == "add") {
 			int x;
 			cin >> x;
-			s1.insert(x);
+			st.insert(x);
 		}
 		else if (s == "remove") {
 			int x;
 			cin >> x;
-			s1.erase(x);
+			st.erase(x);
 		}
 		else if (s == "check") {
 			int x;
 			cin >> x;
-			if (s1.find(x) != s1.end()) cout << 1 << "\n";
-			else cout << 0 << "\n";
+			if (st.find(x) == st.end()) { // 없다.
+				cout << 0 << "\n";
+			}
+			else cout << 1 << "\n"; // 있다
 		}
 		else if (s == "toggle") {
 			int x;
 			cin >> x;
-			if (s1.find(x) != s1.end()) s1.erase(x);
-			else s1.insert(x);
+			if (st.find(x) == st.end()) { // 없다
+				st.insert(x);
+			}
+			else st.erase(x); // 있다
 		}
 		else if (s == "all") {
 			for (int i = 1; i <= 20; i++) {
-				s1.insert(i);
+				st.insert(i);
 			}
 		}
 		else if (s == "empty") {
-			set<int>tmp;
-			s1 = tmp;
+			for (int i = 1; i <= 20; i++) {
+				st.erase(i);
+			}
 		}
 	}
 }
