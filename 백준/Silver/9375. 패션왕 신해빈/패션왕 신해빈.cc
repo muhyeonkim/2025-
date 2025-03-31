@@ -4,23 +4,20 @@
 using namespace std;
 
 int main() {
-	int t, n;
+	int t;
 	cin >> t;
 	while (t--) {
-		int result = 1;
+		int n, res = 1;
 		unordered_map<string, int>um;
-		int n;
 		cin >> n;
 		for (int i = 0; i < n; i++) {
-			string s1, s2;
-			cin >> s1 >> s2;
-			um[s2]++;
+			string name, type;
+			cin >> name >> type;
+			um[type]++;
 		}
-
-		for (auto i : um) {
-			if(i.second!=0)
-				result *= i.second+1;
+		for (auto a : um) {
+			res *= a.second + 1;
 		}
-		cout << result - 1 << "\n";
+		cout << res - 1 << "\n";
 	}
 }
