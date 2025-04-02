@@ -36,7 +36,7 @@ int main() {
 		v.push_back(x);
 	}
 	sort(v.begin(), v.end());
-	long long left = 1, right = (long long)v[0] * m, res = right;
+	long long left = 1, right = (long long)v[0] * m, res = 0;
 	while (left <= right) {
 		long long mid = (left + right) / 2;
 		if (isImpossible(mid)) {// 해당 시간안에 모두 받을 수 있을 때 더 줄일 수 있는지 확인
